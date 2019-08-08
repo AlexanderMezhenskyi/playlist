@@ -17,7 +17,7 @@ PlayList.prototype.stop = function(){
     song.stop();
 };
 PlayList.prototype.prev = function(){
-    let song = this.songs[this.currentIndex];
+    let song;
 
     this.stop();
     this.currentIndex--;
@@ -26,10 +26,11 @@ PlayList.prototype.prev = function(){
         this.currentIndex = this.songs.length - 1;
     }
 
+    song = this.songs[this.currentIndex];
     song.play();
 };
 PlayList.prototype.next = function(){
-    let song = this.songs[this.currentIndex];
+    let song;
 
     this.stop();
     this.currentIndex++;
@@ -38,6 +39,7 @@ PlayList.prototype.next = function(){
         this.currentIndex = 0;
     }
 
+    song = this.songs[this.currentIndex];
     song.play();
 };
 PlayList.prototype.del = function(index){
