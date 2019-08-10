@@ -17,39 +17,38 @@ const play = document.getElementById('btn-play'),
       prev = document.getElementById('btn-prev'),
       next = document.getElementById('btn-next');
 
-play.onclick = function(){
+play.addEventListener('click', function () {
     playList.play();
     playList.render(list);
     setDelHandler();
-};
+});
 
-stop.onclick = function(){
+stop.addEventListener('click', function () {
     playList.stop();
     playList.render(list);
     setDelHandler();
-};
+});
 
-prev.onclick = function(){
+prev.addEventListener('click', function () {
     playList.prev();
     playList.render(list);
     setDelHandler();
-};
+});
 
-next.onclick = function(){
+next.addEventListener('click', function () {
     playList.next();
     playList.render(list);
     setDelHandler();
-};
+});
 
 function setDelHandler() {
-    var del = document.querySelectorAll('.btn-delete');
+    let del = document.querySelectorAll('.btn-delete');
 
-    for (var i = 0; i < del.length; i++) {
-        del[i].setAttribute('data-index', i);
-        del[i].onclick = function(e){
-            playList.del(e.target.getAttribute('data-index'));
-            e.target.closest('.row').remove();
-        }
-    }
+    del.forEach(function (btn, index) {
+        btn.addEventListener('click', function (event) {
+            event.target.closest('.row').remove();
+            playList.del(index, list);
+        });
+    });
 }
 setDelHandler();
